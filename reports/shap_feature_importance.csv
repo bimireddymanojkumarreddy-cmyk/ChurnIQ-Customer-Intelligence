@@ -1,0 +1,56 @@
+Feature,Mean_Absolute_SHAP
+cat__Contract_Month-to-month,0.6978679
+num__tenure,0.43775466
+num__AverageChargesPerMonth,0.24131428
+num__TotalCharges,0.21681409
+num__MonthlyCharges,0.21009895
+cat__OnlineSecurity_No,0.20352253
+cat__InternetService_Fiber optic,0.1999868
+cat__Contract_Two year,0.18681361
+cat__TechSupport_No,0.17847715
+cat__PaymentMethod_Electronic check,0.13134174
+cat__MultipleLines_No,0.12240958
+cat__Contract_One year,0.08333003
+cat__Dependents_No,0.07314679
+cat__PaperlessBilling_No,0.06392038
+cat__OnlineBackup_No,0.06282033
+cat__StreamingTV_Yes,0.051628247
+cat__StreamingMovies_Yes,0.051426407
+num__SeniorCitizen,0.05119441
+num__TotalAdditionalServices,0.048009604
+cat__PaperlessBilling_Yes,0.039057564
+cat__InternetService_DSL,0.0364813
+cat__PhoneService_No,0.030837812
+cat__PaymentMethod_Mailed check,0.030581977
+cat__StreamingTV_No,0.030187821
+cat__gender_Female,0.028666882
+cat__TechSupport_Yes,0.025914893
+cat__PaymentMethod_Bank transfer (automatic),0.022946283
+cat__Partner_No,0.021823613
+cat__StreamingMovies_No,0.021713443
+cat__OnlineBackup_Yes,0.020327289
+cat__PaymentMethod_Credit card (automatic),0.016630469
+cat__MultipleLines_Yes,0.0145382695
+cat__OnlineSecurity_Yes,0.01429382
+cat__DeviceProtection_No,0.013034314
+cat__TenureGroup_Medium-term,0.012766529
+cat__MonthlyChargeGroup_Medium,0.008855142
+cat__TenureGroup_Short-term,0.0071775718
+cat__PhoneService_Yes,0.007079643
+cat__TenureGroup_New,0.0069518373
+cat__gender_Male,0.0061848178
+cat__OnlineSecurity_No internet service,0.0052250978
+cat__TenureGroup_Long-term,0.005028418
+cat__Dependents_Yes,0.0043667993
+cat__Partner_Yes,0.0036971956
+cat__MonthlyChargeGroup_High,0.0035656882
+cat__DeviceProtection_Yes,0.003064946
+cat__MonthlyChargeGroup_Very High,0.0014978122
+cat__InternetService_No,0.0
+cat__MultipleLines_No phone service,0.0
+cat__StreamingMovies_No internet service,0.0
+cat__TechSupport_No internet service,0.0
+cat__OnlineBackup_No internet service,0.0
+cat__StreamingTV_No internet service,0.0
+cat__DeviceProtection_No internet service,0.0
+cat__MonthlyChargeGroup_Low,0.0

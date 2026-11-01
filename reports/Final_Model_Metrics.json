@@ -1,0 +1,12 @@
+{
+    "model_name": "Random Forest",
+    "threshold": 0.5,
+    "test_metrics": {
+        "Accuracy": 0.7501774308019872,
+        "Precision": 0.52,
+        "Recall": 0.7647058823529411,
+        "F1 Score": 0.6190476190476191,
+        "ROC-AUC": 0.836813144230024
+    },
+    "evaluation_date": "2026-11-01T01:11:45.551323"
+}
