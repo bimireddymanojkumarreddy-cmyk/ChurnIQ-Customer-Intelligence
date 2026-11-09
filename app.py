@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import json
 import joblib
@@ -71,99 +70,167 @@ FEATURE_NAMES = [
 ]
 
 # =========================================================
-# 2. CUSTOM STYLING
+# 2. CUSTOM STYLING - CLEAN LIGHT THEME
 # =========================================================
 
 st.markdown("""
 <style>
-    .stApp {
-        background-color: #080D18;
-        color: #F4F7FC;
-    }
-
-    [data-testid="stSidebar"] {
-        background-color: #0E1727;
-        border-right: 1px solid #24334A;
-    }
-
-    [data-testid="stSidebar"] * {
-        color: #DCE6F5;
-    }
-
-    .main-title {
-        font-size: 42px;
-        font-weight: 800;
-        color: #F4F7FC;
-        margin-bottom: 4px;
-    }
-
-    .subtitle {
-        color: #91A9C8;
-        font-size: 16px;
-        margin-bottom: 25px;
-    }
-
-    .metric-card {
-        background: #141F31;
-        border: 1px solid #263852;
-        border-radius: 14px;
-        padding: 20px;
-        min-height: 115px;
-    }
-
-    .metric-label {
-        color: #A9BCD6;
-        font-size: 14px;
-    }
-
-    .metric-value {
-        color: #EAF1FC;
-        font-size: 30px;
-        font-weight: 800;
-        margin-top: 7px;
-    }
-
-    .section-title {
-        font-size: 23px;
-        font-weight: 700;
-        margin-top: 20px;
-        margin-bottom: 12px;
-        color: #F4F7FC;
-    }
-
-    .info-card {
-        background: #141F31;
-        border: 1px solid #263852;
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-    }
-
-    .workflow-step {
-        background: #141F31;
-        border-left: 4px solid #19C5B5;
-        border-radius: 8px;
-        padding: 15px 18px;
-        margin-bottom: 12px;
-    }
-
-    .small-muted {
-        color: #91A9C8;
-        font-size: 13px;
-    }
-
-    h1, h2, h3 {
-        color: #F4F7FC !important;
-    }
-
-    div[data-testid="stMetric"] {
-        background: #141F31;
-        border: 1px solid #263852;
-        padding: 16px;
-        border-radius: 12px;
-    }
+:root {
+    --ink: #172B4D;
+    --muted: #667085;
+    --teal: #0F9D8A;
+    --teal-dark: #087F70;
+    --line: #E6EBF2;
+    --surface: #FFFFFF;
+    --canvas: #F5F8FC;
+}
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+    background: var(--canvas) !important;
+    color: var(--ink) !important;
+}
+.block-container {
+    max-width: 1500px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+[data-testid="stHeader"] {
+    background: rgba(245,248,252,.92);
+}
+[data-testid="stSidebar"] {
+    background: #FFFFFF !important;
+    border-right: 1px solid var(--line);
+}
+[data-testid="stSidebar"] > div:first-child {
+    padding: 1.4rem 1rem;
+}
+[data-testid="stSidebar"] * { color: var(--ink); }
+[data-testid="stSidebar"] h2 { color: var(--teal) !important; letter-spacing: -.5px; }
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    padding: .42rem .55rem;
+    border-radius: 9px;
+    font-weight: 550;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+    background: #EAF7F5;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: var(--ink) !important;
+    letter-spacing: -.35px;
+}
+.main-title {
+    font-size: clamp(1.8rem, 3vw, 2.45rem);
+    font-weight: 800;
+    letter-spacing: -1.1px;
+    color: var(--ink) !important;
+    margin: 0 0 .25rem 0;
+}
+.subtitle {
+    color: var(--muted) !important;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.metric-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.15rem 1.25rem;
+    min-height: 118px;
+    box-shadow: 0 5px 18px rgba(23,43,77,.045);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 24px rgba(23,43,77,.08);
+}
+.metric-label {
+    color: var(--muted) !important;
+    font-size: .83rem;
+    font-weight: 600;
+}
+.metric-value {
+    color: var(--ink) !important;
+    font-size: clamp(1.55rem, 2.4vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -.7px;
+    margin-top: .45rem;
+}
+.section-title {
+    font-size: 1.35rem;
+    font-weight: 750;
+    margin: 1.3rem 0 .75rem;
+    color: var(--ink) !important;
+}
+.info-card, [data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: 14px;
+}
+.info-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    padding: 1.2rem;
+    margin-bottom: .8rem;
+}
+.workflow-step {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--teal);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    margin-bottom: .75rem;
+}
+.small-muted { color: var(--muted) !important; font-size: .82rem; }
+div[data-testid="stMetric"] {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(23,43,77,.035);
+}
+[data-testid="stMetricLabel"] { color: var(--muted) !important; }
+[data-testid="stMetricValue"] { color: var(--ink) !important; font-weight: 750; }
+input, textarea, [data-baseweb="select"] > div {
+    background: #FFFFFF !important;
+    color: var(--ink) !important;
+    border-color: #D5DDE8 !important;
+    border-radius: 9px !important;
+}
+[data-testid="stNumberInput"] button {
+    color: var(--ink) !important;
+}
+.stButton button, .stFormSubmitButton button, .stDownloadButton button {
+    background: var(--teal) !important;
+    color: #FFFFFF !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    min-height: 2.65rem;
+    font-weight: 650;
+    transition: background .15s ease, transform .15s ease;
+}
+.stButton button:hover, .stFormSubmitButton button:hover,
+.stDownloadButton button:hover {
+    background: var(--teal-dark) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+}
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+[data-testid="stTabs"] button { color: var(--ink) !important; }
+[data-testid="stTabs"] button[aria-selected="true"] {
+    color: var(--teal) !important;
+    border-bottom-color: var(--teal) !important;
+}
+[data-testid="stExpander"] {
+    background: #FFFFFF !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stAlert"] { border-radius: 12px; }
+hr { border-color: var(--line) !important; }
 </style>
 """, unsafe_allow_html=True)
+
 
 # =========================================================
 # 3. LOAD DATA AND MODEL
@@ -397,19 +464,20 @@ def load_metrics():
 
 
 metrics = load_metrics()
-
-
 # =========================================================
 # 8. SIDEBAR NAVIGATION
 # =========================================================
 
 with st.sidebar:
     st.markdown(
-        "<h2 style='color:#19C5B5;'>◉ ChurnIQ</h2>",
+        "<h2 style='color:#0F9D8A; font-size:1.75rem; margin-bottom:0;'>◉ ChurnIQ</h2>",
         unsafe_allow_html=True
     )
 
-    st.caption("CUSTOMER INTELLIGENCE PLATFORM")
+    st.markdown(
+        "<div style=\"font-size:.67rem; letter-spacing:1.15px; font-weight:700; color:#8290A5; margin-top:2px;\">CUSTOMER INTELLIGENCE PLATFORM</div>",
+        unsafe_allow_html=True
+    )
 
     st.divider()
 
@@ -438,17 +506,20 @@ with st.sidebar:
     st.caption(
         "Customer Churn Prediction & Retention Analytics"
     )
-
-
-# =========================================================
+    # =========================================================
 # 9. COMMON DATA PREPARATION
 # =========================================================
 
 total_customers = len(df)
-churned_customers = int((df["Churn"] == "Yes").sum())
+
+churned_customers = int(
+    (df["Churn"] == "Yes").sum()
+)
+
 churn_rate = (
     churned_customers / total_customers * 100
 )
+
 average_charges = df["MonthlyCharges"].mean()
 
 df_engineered = engineer_features(df)
@@ -459,6 +530,7 @@ def page_heading(title, subtitle):
         f"<div class='main-title'>{title}</div>",
         unsafe_allow_html=True
     )
+
     st.markdown(
         f"<div class='subtitle'>{subtitle}</div>",
         unsafe_allow_html=True
@@ -475,7 +547,6 @@ def metric_card(label, value):
         """,
         unsafe_allow_html=True
     )
-
 
 # =========================================================
 # 10. OVERVIEW DASHBOARD
@@ -546,7 +617,7 @@ if page == "Overview":
             textfont_size=12,
             marker=dict(
                 line=dict(
-                    color="#141F31",
+                    color="#FFFFFF",
                     width=2
                 )
             )
@@ -565,9 +636,15 @@ if page == "Overview":
                 xanchor="center",
                 x=0.5
             ),
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC"
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5",
+                zeroline=False
+            )
         )
 
         st.plotly_chart(
@@ -610,9 +687,15 @@ if page == "Overview":
             height=330,
             showlegend=False,
             margin=dict(l=10, r=10, t=20, b=10),
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC",
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5",
+                zeroline=False
+            ),
             yaxis_title="Churn Rate (%)"
         )
 
@@ -651,9 +734,15 @@ if page == "Overview":
 
         fig.update_layout(
             height=350,
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC"
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5",
+                zeroline=False
+            )
         )
 
         st.plotly_chart(
@@ -690,16 +779,21 @@ if page == "Overview":
         fig.update_layout(
             height=350,
             showlegend=False,
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC"
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5",
+                zeroline=False
+            )
         )
 
         st.plotly_chart(
             fig,
             use_container_width=True
         )
-
 
 # =========================================================
 # 11. CHURN ANALYSIS
@@ -739,9 +833,11 @@ elif page == "Churn Analysis":
 
         fig.update_layout(
             height=350,
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC"
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(showgrid=True, gridcolor="#E9EEF5", zeroline=False)
         )
 
         st.plotly_chart(fig, use_container_width=True)
@@ -771,9 +867,11 @@ elif page == "Churn Analysis":
 
         fig.update_layout(
             height=350,
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC",
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis=dict(showgrid=False, zeroline=False),
+            yaxis=dict(showgrid=True, gridcolor="#E9EEF5", zeroline=False),
             xaxis_tickangle=-25
         )
 
@@ -1131,55 +1229,205 @@ elif page == "Retention Analytics":
 
     page_heading(
         "Retention Analytics",
-        "Identify customer segments with higher churn and retention opportunities."
+        "Identify high-risk customer segments and explore opportunities "
+        "to improve customer retention."
     )
 
-    tenure_analysis = (
-        df_engineered.groupby(
-            "TenureGroup", observed=False
+    # -----------------------------------------------------
+    # RETENTION KPI METRICS
+    # -----------------------------------------------------
+
+    retained_customers = int(
+        (df["Churn"] == "No").sum()
+    )
+
+    retention_rate = (
+        retained_customers / total_customers * 100
+        if total_customers > 0 else 0
+    )
+
+    churned_revenue = df.loc[
+        df["Churn"] == "Yes",
+        "MonthlyCharges"
+    ].sum()
+
+    avg_tenure = df["tenure"].mean()
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        metric_card(
+            "Retained Customers",
+            f"{retained_customers:,}"
         )
-        .agg(
-            Total_Customers=("Churn", "size"),
-            Churned_Customers=(
-                "Churn",
-                lambda x: (x == "Yes").sum()
+
+    with col2:
+        metric_card(
+            "Retention Rate",
+            f"{retention_rate:.2f}%"
+        )
+
+    with col3:
+        metric_card(
+            "At-Risk Monthly Revenue",
+            f"${churned_revenue:,.2f}"
+        )
+
+    with col4:
+        metric_card(
+            "Average Customer Tenure",
+            f"{avg_tenure:.1f} months"
+        )
+
+    st.divider()
+
+    # -----------------------------------------------------
+    # CHURN RISK SEGMENTS
+    # -----------------------------------------------------
+
+    st.markdown("### Customer Retention Opportunities")
+
+    left, right = st.columns(2)
+
+    with left:
+
+        st.markdown("#### Churn by Contract Type")
+
+        contract_retention = (
+            df.groupby("Contract")["Churn"]
+            .apply(
+                lambda x: (x == "Yes").mean() * 100
+            )
+            .reset_index(name="Churn Rate")
+            .sort_values("Churn Rate", ascending=False)
+        )
+
+        fig = px.bar(
+            contract_retention,
+            x="Contract",
+            y="Churn Rate",
+            color="Churn Rate",
+            text="Churn Rate",
+            color_continuous_scale="Teal"
+        )
+
+        fig.update_traces(
+            texttemplate="%{text:.1f}%",
+            textposition="outside"
+        )
+
+        fig.update_layout(
+            height=350,
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis_title="Contract Type",
+            yaxis_title="Churn Rate (%)",
+            xaxis=dict(showgrid=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5"
             )
         )
-        .reset_index()
-    )
 
-    tenure_analysis["Churn Rate"] = (
-        tenure_analysis["Churned_Customers"] /
-        tenure_analysis["Total_Customers"] * 100
-    )
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
 
-    st.markdown("### Customer Retention by Tenure")
+    with right:
 
-    st.dataframe(
-        tenure_analysis,
-        use_container_width=True,
-        hide_index=True
+        st.markdown("#### Churn by Tenure Group")
+
+        tenure_retention = (
+            df_engineered.groupby(
+                "TenureGroup",
+                observed=False
+            )["Churn"]
+            .apply(
+                lambda x: (x == "Yes").mean() * 100
+            )
+            .reset_index(name="Churn Rate")
+            .sort_values("Churn Rate", ascending=False)
+        )
+
+        fig = px.bar(
+            tenure_retention,
+            x="TenureGroup",
+            y="Churn Rate",
+            color="Churn Rate",
+            text="Churn Rate",
+            color_continuous_scale="Teal"
+        )
+
+        fig.update_traces(
+            texttemplate="%{text:.1f}%",
+            textposition="outside"
+        )
+
+        fig.update_layout(
+            height=350,
+            paper_bgcolor="#FFFFFF",
+            plot_bgcolor="#FFFFFF",
+            font_color="#172B4D",
+            xaxis_title="Tenure Group",
+            yaxis_title="Churn Rate (%)",
+            xaxis=dict(showgrid=False),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor="#E9EEF5"
+            )
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    st.divider()
+
+    # -----------------------------------------------------
+    # REVENUE AT RISK
+    # -----------------------------------------------------
+
+    st.markdown("### Monthly Revenue at Risk")
+
+    revenue_data = (
+        df.groupby("Churn")["MonthlyCharges"]
+        .sum()
+        .reset_index(name="Monthly Revenue")
     )
 
     fig = px.bar(
-        tenure_analysis,
-        x="TenureGroup",
-        y="Churn Rate",
-        color="Churn Rate",
-        color_continuous_scale="Teal",
-        text="Churn Rate"
+        revenue_data,
+        x="Churn",
+        y="Monthly Revenue",
+        color="Churn",
+        text="Monthly Revenue",
+        color_discrete_map={
+            "No": "#19C5B5",
+            "Yes": "#B66AD8"
+        }
     )
 
     fig.update_traces(
-        texttemplate="%{text:.2f}%",
+        texttemplate="$%{text:,.0f}",
         textposition="outside"
     )
 
     fig.update_layout(
-        height=400,
-        paper_bgcolor="#141F31",
-        plot_bgcolor="#141F31",
-        font_color="#EAF1FC"
+        height=380,
+        showlegend=False,
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
+        font_color="#172B4D",
+        xaxis_title="Customer Status",
+        yaxis_title="Total Monthly Charges ($)",
+        xaxis=dict(showgrid=False),
+        yaxis=dict(
+            showgrid=True,
+            gridcolor="#E9EEF5"
+        )
     )
 
     st.plotly_chart(
@@ -1187,62 +1435,55 @@ elif page == "Retention Analytics":
         use_container_width=True
     )
 
-    st.markdown("### Retention Opportunities")
+    # -----------------------------------------------------
+    # RETENTION ACTION INSIGHTS
+    # -----------------------------------------------------
 
-    highest = tenure_analysis.loc[
-        tenure_analysis["Churn Rate"].idxmax()
-    ]
+    st.markdown("### Recommended Retention Actions")
 
-    lowest = tenure_analysis.loc[
-        tenure_analysis["Churn Rate"].idxmin()
-    ]
+    highest_contract = contract_retention.iloc[0]
 
-    c1, c2 = st.columns(2)
+    highest_tenure = tenure_retention.iloc[0]
 
-    with c1:
+    insight_col1, insight_col2 = st.columns(2)
+
+    with insight_col1:
         st.markdown(
             f"""
-            <div class="info-card">
-                <h3>Highest Churn Segment</h3>
-                <h2 style="color:#B66AD8;">
-                    {highest['TenureGroup']}
-                </h2>
-                <p>
-                    Churn rate:
-                    <b>{highest['Churn Rate']:.2f}%</b>
-                </p>
+            <div class="metric-card">
+                <div class="metric-label">Highest-Risk Contract</div>
+                <div class="metric-value">
+                    {highest_contract["Contract"]}
+                </div>
+                <div class="metric-label">
+                    Churn rate: {highest_contract["Churn Rate"]:.2f}%
+                </div>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-    with c2:
+    with insight_col2:
         st.markdown(
             f"""
-            <div class="info-card">
-                <h3>Lowest Churn Segment</h3>
-                <h2 style="color:#19C5B5;">
-                    {lowest['TenureGroup']}
-                </h2>
-                <p>
-                    Churn rate:
-                    <b>{lowest['Churn Rate']:.2f}%</b>
-                </p>
+            <div class="metric-card">
+                <div class="metric-label">Highest-Risk Tenure Group</div>
+                <div class="metric-value">
+                    {highest_tenure["TenureGroup"]}
+                </div>
+                <div class="metric-label">
+                    Churn rate: {highest_tenure["Churn Rate"]:.2f}%
+                </div>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-    st.markdown("### Suggested Retention Actions")
-
-    st.markdown("""
-    - Focus early engagement on new customers.
-    - Encourage month-to-month customers to consider longer contracts.
-    - Review high monthly charges and suitable pricing options.
-    - Improve access to online security and technical support.
-    - Monitor high-risk customers using model predictions.
-    """)
-
+    st.info(
+        "Retention strategy: prioritize customers in the highest-risk "
+        "segments. Consider personalized offers, contract incentives, "
+        "service improvements and proactive customer support."
+    )
 
 # =========================================================
 # 15. MODEL PERFORMANCE
@@ -1251,435 +1492,383 @@ elif page == "Retention Analytics":
 elif page == "Model Performance":
 
     page_heading(
-        "Model Performance & Insights",
-        "Review the selected model, decision threshold and final test results."
+        "Model Performance",
+        "Evaluate model performance, compare classification algorithms "
+        "and understand prediction quality."
     )
 
-    c1, c2, c3 = st.columns(3)
+    # -----------------------------------------------------
+    # MODEL INFORMATION
+    # -----------------------------------------------------
 
-    c1.metric("Selected Model", model_name)
-    c2.metric("Decision Threshold", f"{threshold:.2f}")
-    c3.metric("Input Features", len(saved_features))
+    st.subheader("Model Information")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        metric_card("Selected Model", model_name)
+
+    with col2:
+        metric_card("Decision Threshold", f"{threshold:.2f}")
+
+    with col3:
+        metric_card("Input Features", str(len(saved_features)))
 
     st.divider()
 
-    st.markdown("### Final Test Performance")
+    # -----------------------------------------------------
+    # MODEL COMPARISON
+    # -----------------------------------------------------
 
-    metric_columns = st.columns(5)
+    st.subheader("Model Comparison")
 
-    for column, (name, value) in zip(
-        metric_columns, metrics.items()
-    ):
-        try:
-            column.metric(
-                name,
-                f"{float(value) * 100:.2f}%"
-            )
-        except (ValueError, TypeError):
-            column.metric(name, str(value))
+    model_results = pd.DataFrame({
+        "Model": [
+            "Random Forest",
+            "XGBoost",
+            "Logistic Regression",
+            "ANN",
+            "Decision Tree"
+        ],
+        "Accuracy": [
+            0.772, 0.762, 0.752, 0.815, 0.731
+        ],
+        "Precision": [
+            0.551, 0.536, 0.522, 0.686, 0.496
+        ],
+        "Recall": [
+            0.759, 0.769, 0.779, 0.562, 0.773
+        ],
+        "F1 Score": [
+            0.639, 0.632, 0.626, 0.618, 0.604
+        ],
+        "ROC-AUC": [
+            0.847, 0.844, 0.850, 0.848, 0.818
+        ]
+    })
 
-    metric_df = pd.DataFrame(
+    st.dataframe(
+        model_results.style.format({
+            "Accuracy": "{:.3f}",
+            "Precision": "{:.3f}",
+            "Recall": "{:.3f}",
+            "F1 Score": "{:.3f}",
+            "ROC-AUC": "{:.3f}"
+        }),
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.caption(
+        "Comparison of the five evaluated classification models "
+        "using the supplied evaluation results."
+    )
+
+    # -----------------------------------------------------
+    # PERFORMANCE VISUALIZATION
+    # -----------------------------------------------------
+
+    st.markdown("### Performance Metric Comparison")
+
+    selected_metric = st.selectbox(
+        "Select Evaluation Metric",
         [
-            {
-                "Metric": name,
-                "Score": float(value)
-            }
-            for name, value in metrics.items()
-            if isinstance(value, (int, float))
+            "Accuracy",
+            "Precision",
+            "Recall",
+            "F1 Score",
+            "ROC-AUC"
         ]
     )
 
-    if not metric_df.empty:
-        fig = px.bar(
-            metric_df,
-            x="Metric",
-            y="Score",
-            color="Metric",
-            text="Score",
-            color_discrete_sequence=[
-                "#19C5B5",
-                "#B66AD8",
-                "#5B9CF5",
-                "#E9A23B",
-                "#67C587"
-            ]
-        )
+    fig = px.bar(
+        model_results,
+        x="Model",
+        y=selected_metric,
+        color="Model",
+        text=selected_metric,
+        color_discrete_sequence=[
+            "#19C5B5",
+            "#5B9CF5",
+            "#B66AD8",
+            "#F4A261",
+            "#8290A5"
+        ]
+    )
 
-        fig.update_traces(
-            texttemplate="%{text:.3f}",
-            textposition="outside"
-        )
+    fig.update_traces(
+        texttemplate="%{text:.3f}",
+        textposition="outside"
+    )
 
-        fig.update_layout(
-            height=400,
-            showlegend=False,
-            yaxis_range=[0, 1],
-            paper_bgcolor="#141F31",
-            plot_bgcolor="#141F31",
-            font_color="#EAF1FC"
+    fig.update_layout(
+        height=400,
+        showlegend=False,
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
+        font_color="#172B4D",
+        yaxis=dict(
+            title=selected_metric,
+            range=[0, 1],
+            gridcolor="#E9EEF5"
+        ),
+        xaxis=dict(
+            title="Classification Model",
+            showgrid=False
         )
+    )
 
-        st.plotly_chart(
-            fig,
-            use_container_width=True
-        )
-
-    st.caption(
-        "Metrics are from the final test evaluation. "
-        "The threshold controls the predicted churn classification."
+    st.plotly_chart(
+        fig,
+        use_container_width=True
     )
 
     st.divider()
 
-    st.markdown("### Feature Importance")
+    # -----------------------------------------------------
+    # XGBOOST CLASSIFICATION REPORT
+    # -----------------------------------------------------
 
-    if SHAP_PATH.exists():
+    st.subheader("XGBoost Classification Report")
 
-        try:
-            shap_df = pd.read_csv(SHAP_PATH)
-
-            st.dataframe(
-                shap_df,
-                use_container_width=True
-            )
-
-            numeric_columns = shap_df.select_dtypes(
-                include=np.number
-            ).columns.tolist()
-
-            if len(numeric_columns) > 0:
-                value_column = numeric_columns[-1]
-
-                name_column = next(
-                    (
-                        col for col in shap_df.columns
-                        if col not in numeric_columns
-                    ),
-                    None
-                )
-
-                if name_column:
-                    importance_fig = px.bar(
-                        shap_df.nlargest(
-                            15, value_column
-                        ),
-                        x=value_column,
-                        y=name_column,
-                        orientation="h",
-                        color=value_column,
-                        color_continuous_scale="Teal"
-                    )
-
-                    importance_fig.update_layout(
-                        height=500,
-                        paper_bgcolor="#141F31",
-                        plot_bgcolor="#141F31",
-                        font_color="#EAF1FC"
-                    )
-
-                    st.plotly_chart(
-                        importance_fig,
-                        use_container_width=True
-                    )
-
-        except Exception as error:
-            st.warning(
-                f"Could not display feature importance: {error}"
-            )
-
-    else:
-        st.info(
-            "SHAP feature importance file is not available yet. "
-            "The rest of the model performance section is available."
-        )
-
-
-# =========================================================
-# 16. ABOUT PROJECT AND PROJECT WORKFLOW
-# =========================================================
-elif page == "About Project":
-
-    st.title("About the Project")
     st.caption(
-        "Customer Churn Prediction & Retention Analytics Platform"
+        "Detailed class-wise evaluation results for the supplied "
+        "XGBoost classification report."
     )
 
-    # --------------------------------------------------
-    # PROJECT OVERVIEW
-    # --------------------------------------------------
+    classification_report_df = pd.DataFrame({
+        "Class": [
+            "No Churn",
+            "Churn",
+            "Macro Average",
+            "Weighted Average"
+        ],
+        "Precision": [
+            0.90, 0.52, 0.71, 0.80
+        ],
+        "Recall": [
+            0.74, 0.76, 0.75, 0.75
+        ],
+        "F1 Score": [
+            0.81, 0.62, 0.72, 0.76
+        ],
+        "Support": [
+            1035, 374, 1409, 1409
+        ]
+    })
 
-    st.markdown("## Project Overview")
-
-    st.markdown("""
-    This project is an end-to-end Machine Learning and Customer
-    Analytics Platform designed to identify customers who are
-    likely to discontinue a telecommunications service.
-
-    It combines customer data analysis, feature engineering,
-    machine learning, churn probability estimation, and
-    personalized retention recommendations.
-
-    The platform helps businesses understand customer behavior,
-    identify customers at risk of leaving, and make data-driven
-    retention decisions.
-    """)
-
-    st.divider()
-
-    # --------------------------------------------------
-    # PROJECT OBJECTIVES
-    # --------------------------------------------------
-
-    st.markdown("## Project Objectives")
+    st.dataframe(
+        classification_report_df,
+        use_container_width=True,
+        hide_index=True
+    )
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("""
-        - Analyze customer demographics and subscription patterns.
-        - Identify important factors associated with churn.
-        - Develop a machine learning model to predict churn.
-        - Estimate individual customer churn probabilities.
-        """)
+        metric_card(
+            "XGBoost Accuracy",
+            "75.02%"
+        )
 
     with col2:
-        st.markdown("""
-        - Classify customers into risk categories.
-        - Generate personalized retention recommendations.
-        - Support batch customer predictions.
-        - Present business insights through an interactive dashboard.
-        """)
+        metric_card(
+            "XGBoost ROC-AUC",
+            "0.8368"
+        )
 
     st.divider()
 
-    # --------------------------------------------------
-    # PROJECT WORKFLOW
-    # --------------------------------------------------
+    # -----------------------------------------------------
+    # MODEL PERFORMANCE INSIGHTS
+    # -----------------------------------------------------
 
-    st.markdown("## Project Workflow")
+    st.subheader("Performance Insights")
 
-    st.caption(
-        "End-to-end workflow followed to develop the platform."
-    )
-
-    workflow = [
-        (
-            "01",
-            "Data Collection",
-            "Used the IBM Telco Customer Churn dataset containing "
-            "customer, subscription, service, and billing information."
-        ),
-        (
-            "02",
-            "Data Cleaning",
-            "Handled missing values, converted data types, "
-            "removed duplicate records, and prepared the dataset."
-        ),
-        (
-            "03",
-            "Exploratory Data Analysis",
-            "Analyzed churn distribution, customer tenure, "
-            "contract types, and monthly charges."
-        ),
-        (
-            "04",
-            "Feature Engineering",
-            "Created AverageChargesPerMonth, TenureGroup, "
-            "MonthlyChargeGroup, and TotalAdditionalServices."
-        ),
-        (
-            "05",
-            "Data Preprocessing",
-            "Applied numerical and categorical preprocessing "
-            "using imputation, scaling, and one-hot encoding."
-        ),
-        (
-            "06",
-            "Model Development",
-            "Developed and evaluated machine learning models "
-            "and selected Random Forest for this application."
-        ),
-        (
-            "07",
-            "Model Evaluation",
-            "Evaluated the selected model on the test dataset "
-            "using accuracy, precision, recall, F1-score, and ROC-AUC."
-        ),
-        (
-            "08",
-            "Model Deployment",
-            "Saved the trained model and preprocessing pipeline "
-            "for reuse in the Streamlit application."
-        ),
-        (
-            "09",
-            "Prediction & Retention",
-            "Implemented individual predictions, batch predictions, "
-            "churn risk classification, and retention recommendations."
-        ),
-        (
-            "10",
-            "Interactive Dashboard",
-            "Built an interactive dashboard to explore customer "
-            "analytics, predictions, and model performance."
-        )
+    best_accuracy = model_results.loc[
+        model_results["Accuracy"].idxmax()
     ]
 
-    for number, title, description in workflow:
+    best_precision = model_results.loc[
+        model_results["Precision"].idxmax()
+    ]
 
-        with st.container(border=True):
-            col1, col2 = st.columns([0.12, 0.88])
+    best_recall = model_results.loc[
+        model_results["Recall"].idxmax()
+    ]
 
-            with col1:
-                st.markdown(f"### {number}")
+    best_roc = model_results.loc[
+        model_results["ROC-AUC"].idxmax()
+    ]
 
-            with col2:
-                st.markdown(f"### {title}")
-                st.write(description)
+    insight_col1, insight_col2 = st.columns(2)
 
-    st.divider()
+    with insight_col1:
 
-    # --------------------------------------------------
-    # TECHNOLOGY STACK
-    # --------------------------------------------------
+        st.info(
+            f"**Highest Accuracy:** {best_accuracy['Model']} "
+            f"({best_accuracy['Accuracy']:.3f})"
+        )
 
-    st.markdown("## Technology Stack")
+        st.info(
+            f"**Highest Precision:** {best_precision['Model']} "
+            f"({best_precision['Precision']:.3f})"
+        )
 
-    tech_col1, tech_col2, tech_col3 = st.columns(3)
+    with insight_col2:
 
-    with tech_col1:
-        st.markdown("### Programming")
-        st.markdown("""
-        - Python
-        - Pandas
-        - NumPy
-        """)
+        st.info(
+            f"**Highest Recall:** {best_recall['Model']} "
+            f"({best_recall['Recall']:.3f})"
+        )
 
-    with tech_col2:
-        st.markdown("### Machine Learning")
-        st.markdown("""
-        - Scikit-learn
-        - Random Forest
-        - XGBoost
-        - TensorFlow / Keras
-        - SHAP
-        """)
+        st.info(
+            f"**Highest ROC-AUC:** {best_roc['Model']} "
+            f"({best_roc['ROC-AUC']:.3f})"
+        )
 
-    with tech_col3:
-        st.markdown("### Application")
-        st.markdown("""
-        - Streamlit
-        - Plotly
-        - Joblib
-        - Git / GitHub
-        """)
+    st.success(
+        "Model evaluation helps identify the balance between "
+        "correct predictions, identifying churn customers and "
+        "reducing incorrect predictions."
+    )
 
-    st.divider()
+# =========================================================
+# 16. ABOUT PROJECT
+# =========================================================
 
-    # --------------------------------------------------
-    # APPLICATION FEATURES
-    # --------------------------------------------------
+elif page == "About Project":
 
-    st.markdown("## Key Application Features")
+    page_heading(
+        "About ChurnIQ",
+        "An intelligent customer churn prediction and retention analytics platform."
+    )
+
+    # PROJECT INTRODUCTION
+
+    with st.container(border=True):
+
+        st.subheader("Customer Churn Prediction System")
+
+        st.write(
+            "ChurnIQ is a machine learning-based application designed "
+            "to identify customers who are likely to discontinue a company's services."
+        )
+
+        st.write(
+            "The platform analyzes customer information, estimates churn "
+            "probability, identifies high-risk customer groups and supports "
+            "data-driven retention decisions."
+        )
+
+    st.markdown("### Key Features")
 
     feature_col1, feature_col2 = st.columns(2)
 
     with feature_col1:
-        st.markdown("""
-        **Customer Analytics**
-        - Customer overview dashboard
-        - Churn distribution analysis
-        - Contract-based churn analysis
-        - Tenure-based customer segmentation
 
-        **Customer Prediction**
-        - Individual customer prediction
-        - Churn probability estimation
-        - Low, Medium, and High risk categories
-        """)
+        with st.container(border=True):
+            st.subheader("01 · Customer Analytics")
+            st.write(
+                "Explore customer distribution, churn patterns, "
+                "contract types and customer behavior."
+            )
+
+        with st.container(border=True):
+            st.subheader("02 · Individual Prediction")
+            st.write(
+                "Enter customer details and estimate the probability "
+                "of customer churn."
+            )
+
+        with st.container(border=True):
+            st.subheader("03 · Batch Prediction")
+            st.write(
+                "Upload customer records through CSV and generate "
+                "predictions for multiple customers."
+            )
 
     with feature_col2:
-        st.markdown("""
-        **Retention Analytics**
-        - Personalized retention recommendations
-        - Customer risk identification
-        - Business-focused insights
 
-        **Model Insights**
-        - Model performance metrics
-        - Decision threshold information
-        - Feature importance, when available
-        - Batch prediction and CSV download
-        """)
+        with st.container(border=True):
+            st.subheader("04 · Retention Analytics")
+            st.write(
+                "Identify high-risk customer segments and explore "
+                "retention opportunities."
+            )
+
+        with st.container(border=True):
+            st.subheader("05 · Model Evaluation")
+            st.write(
+                "Review model evaluation metrics, confusion matrix "
+                "and classification performance."
+            )
+
+        with st.container(border=True):
+            st.subheader("06 · Interactive Dashboard")
+            st.write(
+                "Explore customer insights through an interactive "
+                "and easy-to-use dashboard."
+            )
 
     st.divider()
 
-    # --------------------------------------------------
-    # MODEL INFORMATION
-    # --------------------------------------------------
+    # TECHNOLOGY STACK
 
-    st.markdown("## Model Information")
+    st.markdown("### Technology Stack")
 
-    model_col1, model_col2, model_col3 = st.columns(3)
+    tech_col1, tech_col2, tech_col3 = st.columns(3)
 
-    with model_col1:
-        st.metric("Selected Model", model_package["model_name"])
+    with tech_col1:
+        with st.container(border=True):
+            st.markdown("**Programming**")
+            st.write("Python")
+            st.write("Pandas")
+            st.write("NumPy")
 
-    with model_col2:
-        st.metric(
-            "Decision Threshold",
-            f'{model_package["threshold"]:.2f}'
-        )
+    with tech_col2:
+        with st.container(border=True):
+            st.markdown("**Machine Learning**")
+            st.write("Scikit-learn")
+            st.write("Classification Models")
+            st.write("Model Evaluation")
 
-    with model_col3:
-        st.metric(
-            "Input Features",
-            len(model_package["feature_names"])
-        )
+    with tech_col3:
+        with st.container(border=True):
+            st.markdown("**Visualization & Deployment**")
+            st.write("Streamlit")
+            st.write("Plotly")
+            st.write("Matplotlib")
 
-    st.info(
-        "The application uses a saved model package containing "
-        "the trained estimator, preprocessing pipeline, "
-        "decision threshold, and expected input features."
+    st.divider()
+
+    # PROJECT OBJECTIVE
+
+    st.markdown("### Project Objective")
+
+    st.write(
+        "The main objective of ChurnIQ is to transform customer data "
+        "into actionable insights. By identifying customers with a higher "
+        "likelihood of leaving, businesses can prioritize retention "
+        "activities and make better customer relationship decisions."
     )
 
     st.divider()
 
-    # --------------------------------------------------
-    # BUSINESS VALUE
-    # --------------------------------------------------
+    # FOOTER
 
-    st.markdown("## Business Value")
+    with st.container(border=True):
+        st.title("ChurnIQ")
 
-    st.markdown("""
-    This platform demonstrates how machine learning can support
-    customer retention strategies.
+        st.caption(
+            "Customer Churn Prediction & Retention Analytics"
+        )
 
-    By identifying customers with a higher estimated probability
-    of churn, businesses can prioritize customer engagement,
-    review subscription plans, and develop targeted retention
-    campaigns.
+        st.caption(
+            "Built with Python, Machine Learning and Streamlit"
+        )
 
-    The objective is to transform customer data into actionable
-    insights that support better business decisions.
-    """)
 
-    st.divider()
-
-    # --------------------------------------------------
-    # PROJECT SUMMARY
-    # --------------------------------------------------
-
-    st.markdown("## Project Summary")
-
-    st.markdown("""
-    **Project:** Customer Churn Prediction & Retention Analytics
-
-    **Dataset:** IBM Telco Customer Churn
-
-    **Application:** Interactive Streamlit Dashboard
-
-    **Machine Learning Model:** Random Forest
-
-    **Project Type:** End-to-End Machine Learning & Data Analytics
-    """)
+# =========================================================
+# END OF APPLICATION
+# =========================================================
